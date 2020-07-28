@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.census.CensusAnalyserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-28T13:56:24" hostname="HARI-PC" time="0.004">
+<testsuite name="com.census.CensusAnalyserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-28T14:17:53" hostname="HARI-PC" time="0.004">
   <properties/>
-  <testcase name="givenIndianCensusCSVFile_WhenDelimiterIncorrect_ThenThrowException" classname="com.census.CensusAnalyserTest" time="0.004"/>
+  <testcase name="givenIndianCensusCSVFile_WhenHeaderIncorrect_ThenthrowException" classname="com.census.CensusAnalyserTest" time="0.004"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
