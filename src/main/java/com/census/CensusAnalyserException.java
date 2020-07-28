@@ -3,7 +3,7 @@ package com.census;
 public class CensusAnalyserException extends Exception{
 
     enum ExceptionType {
-        CENSUS_FILE_PROBLEM,UNABLE_TO_PARSE;
+        CENSUS_FILE_PROBLEM,UNABLE_TO_PARSE,INCORRECT_DELIMITER;
     }
 
     ExceptionType type;
