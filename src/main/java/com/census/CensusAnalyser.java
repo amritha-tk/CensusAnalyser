@@ -24,5 +24,9 @@ public class CensusAnalyser {
                 } catch (IOException e) {
                         throw new CensusAnalyserException("Please Enter Correct Path", CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
                 }
+                catch (IllegalStateException e){
+                        throw new CensusAnalyserException("Please Enter CSV File",
+                                CensusAnalyserException.ExceptionType.UNABLE_TO_PARSE);
+                }
         }
 }
