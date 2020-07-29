@@ -11,15 +11,10 @@ import java.util.stream.StreamSupport;
 public class CensusAnalyser {
         public int loadIndiaCensusData(String csvFilePath) throws CensusAnalyserException {
                 try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
-                        Iterator<IndiaCensusCSV> censusCSVIterator = this.getCSVFileIterator(reader,IndiaCensusCSV.class);
-                        Iterable<IndiaCensusCSV> csvIterable = () -> censusCSVIterator;
-                        int numOfEntries = (int) StreamSupport.stream(csvIterable.spliterator(), false).count();
-                        return numOfEntries;
+                        Iterator<IndiaStateCodeCSV> censusCSVIterator = this.getCSVFileIterator(reader,IndiaCensusCSV.class);
+                        return this.getCount(censusCSVIterator);
                 } catch (IOException e) {
                         throw new CensusAnalyserException("Please Enter Correct Path", CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
-                } catch (IllegalStateException e) {
-                        throw new CensusAnalyserException("Please Enter CSV File",
-                                CensusAnalyserException.ExceptionType.UNABLE_TO_PARSE);
                 }
         }
 
@@ -44,9 +39,6 @@ public class CensusAnalyser {
                 } catch (IOException e) {
                         throw new CensusAnalyserException("Please Enter Correct Path",
                                 CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
-                } catch (IllegalStateException e) {
-                        throw new CensusAnalyserException("Please Enter CSV File",
-                                CensusAnalyserException.ExceptionType.UNABLE_TO_PARSE);
                 }
         }
 
