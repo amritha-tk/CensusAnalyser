@@ -10,7 +10,7 @@ public class CensusAnalyser {
                 try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
                         Iterator<IndiaCensusCSV> censusCSVIterator = new OpenCSVBuilder().
                                                                         getCSVFileIterator(reader,IndiaCensusCSV.class);
-                        return getCount(censusCSVIterator);
+                        return this.getCount(censusCSVIterator);
                 } catch (IOException e) {
                         throw new CensusAnalyserException(e.getMessage(),
                                 CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
