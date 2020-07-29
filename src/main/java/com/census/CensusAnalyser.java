@@ -7,13 +7,6 @@ import java.util.stream.StreamSupport;
 
 public class CensusAnalyser {
         public int loadIndiaCensusData(String csvFilePath) throws CensusAnalyserException {
-<<<<<<< HEAD
-                try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
-                        Iterator<IndiaStateCodeCSV> censusCSVIterator = this.getCSVFileIterator(reader,IndiaCensusCSV.class);
-                        return this.getCount(censusCSVIterator);
-                } catch (IOException e) {
-                        throw new CensusAnalyserException("Please Enter Correct Path", CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
-=======
                 try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
                         Iterator<IndiaCensusCSV> censusCSVIterator = new OpenCSVBuilder().
                                                                         getCSVFileIterator(reader,IndiaCensusCSV.class);
@@ -21,7 +14,6 @@ public class CensusAnalyser {
                 } catch (IOException e) {
                         throw new CensusAnalyserException(e.getMessage(),
                                 CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
->>>>>>> Refactor2_ToHandleSingleResponsibilityPrinciple
                 }
         }
 
