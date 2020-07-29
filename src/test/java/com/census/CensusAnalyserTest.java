@@ -2,9 +2,7 @@ package com.census;
 
 import org.junit.Test;
 import org.junit.Assert;
-import org.junit.rules.ExpectedException;
 
-import java.io.IOException;
 
 
 public class CensusAnalyserTest {
@@ -52,9 +50,9 @@ public class CensusAnalyserTest {
     public void givenIndianCensusCSVFile_WhenDelimiterIncorrect_ThenThrowException() {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
-            censusAnalyser.loadIndiaCensusDataToCheckDelimiter(INCORRECT_DELIMITERANDHEADER_CSVFILE);
+            censusAnalyser.loadCSVFileToCheckDelimiterandHeader(INCORRECT_DELIMITERANDHEADER_CSVFILE);
         } catch (CensusAnalyserException e) {
-            Assert.assertEquals(CensusAnalyserException.ExceptionType.INCORRECT_DELIMITER,e.type);
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.INCORRECT_DELIMITER_OR_INCORRECT_HEADER,e.type);
         }
     }
 
@@ -62,9 +60,9 @@ public class CensusAnalyserTest {
     public void givenIndianCensusCSVFile_WhenHeaderIncorrect_ThenthrowException() {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
-            censusAnalyser.loadIndiaCensusDataToCheckHeader(INCORRECT_DELIMITERANDHEADER_CSVFILE);
+            censusAnalyser.loadCSVFileToCheckDelimiterandHeader(INCORRECT_DELIMITERANDHEADER_CSVFILE);
         } catch (CensusAnalyserException e) {
-            Assert.assertEquals(CensusAnalyserException.ExceptionType.INCORRECT_HEADER,e.type);
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.INCORRECT_DELIMITER_OR_INCORRECT_HEADER,e.type);
         }
     }
 
@@ -101,9 +99,9 @@ public class CensusAnalyserTest {
     public void givenIndianStateCodeCSVFile_WhenDelimiterIncorrect_ThenThrowException() {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
-            censusAnalyser.loadIndiaStateCodeDataToCheckDelimiter(INCORRECT_STATECODE_DELIMITERANDHEADER_CSVFILE);
+            censusAnalyser.loadCSVFileToCheckDelimiterandHeader(INCORRECT_STATECODE_DELIMITERANDHEADER_CSVFILE);
         } catch (CensusAnalyserException e) {
-            Assert.assertEquals(CensusAnalyserException.ExceptionType.INCORRECT_DELIMITER,e.type);
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.INCORRECT_DELIMITER_OR_INCORRECT_HEADER,e.type);
         }
     }
 
@@ -111,9 +109,9 @@ public class CensusAnalyserTest {
     public void givenIndianStateCodeCSVFile_WhenHeaderIncorrect_ThenthrowException() {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
-            censusAnalyser.loadIndiaStateCodeDataToCheckHeader(INCORRECT_STATECODE_DELIMITERANDHEADER_CSVFILE);
+            censusAnalyser.loadCSVFileToCheckDelimiterandHeader(INCORRECT_STATECODE_DELIMITERANDHEADER_CSVFILE);
         } catch (CensusAnalyserException e) {
-            Assert.assertEquals(CensusAnalyserException.ExceptionType.INCORRECT_HEADER,e.type);
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.INCORRECT_DELIMITER_OR_INCORRECT_HEADER,e.type);
         }
     }
 

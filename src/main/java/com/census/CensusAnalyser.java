@@ -11,11 +11,7 @@ import java.util.stream.StreamSupport;
 public class CensusAnalyser {
         public int loadIndiaCensusData(String csvFilePath) throws CensusAnalyserException {
                 try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));) {
-                        CsvToBeanBuilder<IndiaCensusCSV> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
-                        csvToBeanBuilder.withType(IndiaCensusCSV.class);
-                        csvToBeanBuilder.withIgnoreLeadingWhiteSpace(true);
-                        CsvToBean<IndiaCensusCSV> csvToBean = csvToBeanBuilder.build();
-                        Iterator<IndiaCensusCSV> censusCSVIterator = csvToBean.iterator();;
+                        Iterator<IndiaCensusCSV> censusCSVIterator = this.getCSVFileIterator(reader,IndiaCensusCSV.class);
                         Iterable<IndiaCensusCSV> csvIterable = () -> censusCSVIterator;
                         int numOfEntries = (int) StreamSupport.stream(csvIterable.spliterator(), false).count();
                         return numOfEntries;
@@ -27,41 +23,23 @@ public class CensusAnalyser {
                 }
         }
 
-        public boolean loadIndiaCensusDataToCheckDelimiter(String csvFilePath) throws CensusAnalyserException {
+        public boolean loadCSVFileToCheckDelimiterandHeader(String csvFilePath) throws CensusAnalyserException {
                 try {
                         BufferedReader csvReader = new BufferedReader(new FileReader(csvFilePath));
                         String row;
                         while ((row = csvReader.readLine()) != null) {
-                                if (row.contains(","))
-                                        System.out.println("Delimiter present");
+                                if (row.contains(",")|| (row.contains("State")))
+                                        System.out.println("Delimiter present or Header present");
                         }
                 } catch (IOException e) {
-                        throw new CensusAnalyserException("Delimiter Incorrect",CensusAnalyserException.ExceptionType.INCORRECT_DELIMITER);
-                }
-                return true;
-        }
-
-        public boolean loadIndiaCensusDataToCheckHeader(String csvFilePath) throws CensusAnalyserException {
-                try {
-                        BufferedReader csvReader = new BufferedReader(new FileReader(csvFilePath));
-                        String row;
-                        while ((row = csvReader.readLine()) != null) {
-                                if (row.contains("State"))
-                                        System.out.println("Header present");
-                        }
-                } catch (IOException e) {
-                        throw new CensusAnalyserException("Header Incorrect",CensusAnalyserException.ExceptionType.INCORRECT_HEADER);
+                        throw new CensusAnalyserException(e.getMessage(),CensusAnalyserException.ExceptionType.INCORRECT_DELIMITER_OR_INCORRECT_HEADER);
                 }
                 return true;
         }
 
         public int loadIndiaStateCodeData(String csvFilePath) throws CensusAnalyserException {
                 try  (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));){
-                        CsvToBeanBuilder<IndiaStateCodeCSV> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
-                        csvToBeanBuilder.withType(IndiaStateCodeCSV.class);
-                        csvToBeanBuilder.withIgnoreLeadingWhiteSpace(true);
-                        CsvToBean<IndiaStateCodeCSV> csvToBean = csvToBeanBuilder.build();
-                        Iterator<IndiaStateCodeCSV> censusCSVIterator = csvToBean.iterator();
+                        Iterator<IndiaStateCodeCSV> censusCSVIterator = this.getCSVFileIterator(reader,IndiaStateCodeCSV.class);
                         Iterable<IndiaStateCodeCSV> csvIterable = () -> censusCSVIterator;
                         int numOfEntries = (int) StreamSupport.stream(csvIterable.spliterator(), false).count();
                         return numOfEntries;
@@ -74,32 +52,18 @@ public class CensusAnalyser {
                 }
         }
 
-        public boolean loadIndiaStateCodeDataToCheckDelimiter(String csvFilePath) throws CensusAnalyserException {
-                try {
-                        BufferedReader csvReader = new BufferedReader(new FileReader(csvFilePath));
-                        String row;
-                        while ((row = csvReader.readLine()) != null) {
-                                if (row.contains(","))
-                                        System.out.println("Delimiter present");
-                        }
-                } catch (IOException e) {
-                        throw new CensusAnalyserException("Delimiter Incorrect",CensusAnalyserException.ExceptionType.INCORRECT_DELIMITER);
-                }
-                return true;
-        }
+        private <E> Iterator<E> getCSVFileIterator(Reader reader,Class csvClass) throws CensusAnalyserException{
+                try{
+                        CsvToBeanBuilder<E> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
+                        csvToBeanBuilder.withType(csvClass);
+                        csvToBeanBuilder.withIgnoreLeadingWhiteSpace(true);
+                        CsvToBean<E> csvToBean = csvToBeanBuilder.build();
+                        return csvToBean.iterator();
 
-        public boolean loadIndiaStateCodeDataToCheckHeader(String csvFilePath) throws CensusAnalyserException {
-                try {
-                        BufferedReader csvReader = new BufferedReader(new FileReader(csvFilePath));
-                        String row;
-                        while ((row = csvReader.readLine()) != null) {
-                                if (row.contains("State"))
-                                        System.out.println("Present");
-                        }
-                } catch (IOException e) {
-                        throw new CensusAnalyserException("Header Incorrect",CensusAnalyserException.ExceptionType.INCORRECT_HEADER);
+                }catch (IllegalStateException e){
+                        throw new CensusAnalyserException("Please Enter CSV File",
+                                CensusAnalyserException.ExceptionType.UNABLE_TO_PARSE);
                 }
-                return true;
         }
 
 }
