@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.census.CensusAnalyserTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2020-07-29T11:02:28" hostname="HARI-PC" time="0.347">
+<testsuite name="com.census.CensusAnalyserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-07-29T14:35:32" hostname="HARI-PC" time="0.178">
   <properties/>
-  <testcase name="givenIndianStateCodeCSVFile_WhenPassedCorrect_ThenReturnsNumberofRecords" classname="com.census.CensusAnalyserTest" time="0.266"/>
-  <testcase name="givenIndianCensusCSVFile_WhenHeaderIncorrect_ThenthrowException" classname="com.census.CensusAnalyserTest" time="0.003"/>
-  <testcase name="givenIndiaCensusCSVFile_WhenPassedWrong_ThenThrowException" classname="com.census.CensusAnalyserTest" time="0.002"/>
-  <testcase name="givenIndianStateCodeCSVFile_WhenDelimiterIncorrect_ThenThrowException" classname="com.census.CensusAnalyserTest" time="0.001"/>
-  <testcase name="givenIndianCensusCSVFile_WhenPassedCorrect_ThenReturnsNumberofRecords" classname="com.census.CensusAnalyserTest" time="0.066"/>
-  <testcase name="givenIndianStateCodeCSVFile_WhenWrongFileTypePassed_ThenThrowException" classname="com.census.CensusAnalyserTest" time="0.002"/>
-  <testcase name="givenIndiaStateCodeCSVFile_WhenPassedWrong_ThenThrowException" classname="com.census.CensusAnalyserTest" time="0.001"/>
-  <testcase name="givenIndianCensusCSVFile_WhenDelimiterIncorrect_ThenThrowException" classname="com.census.CensusAnalyserTest" time="0.001"/>
-  <testcase name="givenIndianCensusCSVFile_WhenWrongFileTypePassed_ThenThrowException" classname="com.census.CensusAnalyserTest" time="0.001"/>
-  <testcase name="givenIndianStateCodeCSVFile_WhenHeaderIncorrect_ThenthrowException" classname="com.census.CensusAnalyserTest" time="0.0"/>
+  <testcase name="givenIndianStateCodeCSVFile_WhenPassedCorrect_ThenReturnsNumberofRecords" classname="com.census.CensusAnalyserTest" time="0.178"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

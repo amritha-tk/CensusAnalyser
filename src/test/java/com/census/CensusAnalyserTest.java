@@ -3,8 +3,6 @@ package com.census;
 import org.junit.Test;
 import org.junit.Assert;
 
-
-
 public class CensusAnalyserTest {
 
         private static final String INDIA_CENSUS_CSV_FILE_PATH = "./src/test/resources/IndiaStateCensusData.csv";
@@ -114,6 +112,5 @@ public class CensusAnalyserTest {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.INCORRECT_DELIMITER_OR_INCORRECT_HEADER,e.type);
         }
     }
-
 }
 
